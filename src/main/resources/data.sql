@@ -7,6 +7,11 @@ INSERT IGNORE INTO officers (id, police_no, name, department, rank_title, status
   (3, '030003', '赵晓敏', '物证管理科', '三级警长', 'ACTIVE'),
   (4, '030004', '陈海涛', '特巡警支队', '一级警司', 'ACTIVE');
 
+INSERT IGNORE INTO cases (id, case_no, title, case_type, handling_unit, lead_officer_id, status, created_at, updated_at) VALUES
+  (1, 'AJ-2026-0101', '520 Street Assault Case', 'INTENTIONAL_INJURY', 'Criminal Investigation Division 1', 1, 'UNDER_INVESTIGATION', '2026-05-20 08:30:00.000', '2026-05-20 08:30:00.000'),
+  (2, 'AJ-2026-0205', 'Telecom Fraud Series', 'FRAUD', 'Criminal Investigation Division 2', 2, 'UNDER_INVESTIGATION', '2026-05-22 10:00:00.000', '2026-05-22 10:00:00.000'),
+  (3, 'AJ-2026-0312', '312 Burglary Case', 'THEFT', 'Criminal Investigation Division 3', 1, 'TRANSFERRED_TO_PROSECUTION', '2026-03-12 15:00:00.000', '2026-05-25 16:30:00.000');
+
 INSERT IGNORE INTO evidence (id, evidence_no, case_no, name, category, description, status, location, registered_by) VALUES
   (1, 'WZ-2026-0001', 'AJ-2026-0101', '作案匕首一把', 'WEAPON', '案发现场提取的折叠匕首', 'IN_STORAGE', '物证仓A-03', 3),
   (2, 'WZ-2026-0002', 'AJ-2026-0101', '血迹样本', 'BIOLOGICAL', '现场地面血迹棉签提取', 'IN_STORAGE', '物证仓A-04', 3),

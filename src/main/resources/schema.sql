@@ -12,6 +12,22 @@ CREATE TABLE IF NOT EXISTS officers (
     UNIQUE KEY uk_officers_police_no (police_no)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+CREATE TABLE IF NOT EXISTS cases (
+    id               BIGINT       NOT NULL AUTO_INCREMENT,
+    case_no          VARCHAR(48)  NOT NULL,
+    title            VARCHAR(128) NOT NULL,
+    case_type        VARCHAR(64)  NOT NULL,
+    handling_unit    VARCHAR(128) NOT NULL,
+    lead_officer_id  BIGINT       NULL,
+    status           VARCHAR(32)  NOT NULL DEFAULT 'UNDER_INVESTIGATION',
+    created_at       DATETIME(3)  NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    updated_at       DATETIME(3)  NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    PRIMARY KEY (id),
+    UNIQUE KEY uk_case_no (case_no),
+    KEY idx_case_status (status),
+    CONSTRAINT fk_case_lead_officer FOREIGN KEY (lead_officer_id) REFERENCES officers (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 CREATE TABLE IF NOT EXISTS evidence (
     id           BIGINT       NOT NULL AUTO_INCREMENT,
     evidence_no  VARCHAR(48)  NOT NULL,

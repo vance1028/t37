@@ -12,6 +12,21 @@ CREATE TABLE IF NOT EXISTS officers (
     CONSTRAINT uk_officers_police_no UNIQUE (police_no)
 );
 
+CREATE TABLE IF NOT EXISTS cases (
+    id               BIGINT       NOT NULL AUTO_INCREMENT,
+    case_no          VARCHAR(48)  NOT NULL,
+    title            VARCHAR(128) NOT NULL,
+    case_type        VARCHAR(64)  NOT NULL,
+    handling_unit    VARCHAR(128) NOT NULL,
+    lead_officer_id  BIGINT       NULL,
+    status           VARCHAR(32)  NOT NULL DEFAULT 'UNDER_INVESTIGATION',
+    created_at       TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at       TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    CONSTRAINT uk_case_no UNIQUE (case_no),
+    CONSTRAINT fk_case_lead_officer FOREIGN KEY (lead_officer_id) REFERENCES officers (id)
+);
+
 CREATE TABLE IF NOT EXISTS evidence (
     id            BIGINT        NOT NULL AUTO_INCREMENT,
     evidence_no   VARCHAR(48)   NOT NULL,
